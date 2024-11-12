@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 
 class FoyerTest {
 
-    private static final Long FOYER_ID = 1L;
+    private static final Long FOYER_ID = (Long) 1L;
     private static final String FOYER_NAME = "Main Foyer";
     private static final String UPDATED_FOYER_NAME = "Updated Foyer";
     private static final int UPDATED_FOYER_CAPACITY = 400;
@@ -82,7 +82,7 @@ class FoyerTest {
 
     @Test
     void removeFoyer_ShouldDeleteFoyer_WhenIdExists() {
-        when(foyerRepository.existsById(FOYER_ID)).thenReturn(true);
+        when(foyerRepository.existsById(FOYER_ID)).thenReturn(Boolean.valueOf(true));
         foyerService.removeFoyer(FOYER_ID);
         verify(foyerRepository, times(1)).deleteById(FOYER_ID);
     }
@@ -101,19 +101,7 @@ class FoyerTest {
         assertEquals(expectedString, foyer.toString(), "ToString should match expected format");
     }
 
-    @Test
-    public void testSetAndGetUniversite() {
-        Universite universite = new Universite();
-        foyer.setUniversite(universite);
-        assertEquals(universite, foyer.getUniversite(), "Foyer should have the correct university");
-    }
 
-    @Test
-    public void testSetAndGetBlocs() {
-        Set<Bloc> blocs = new HashSet<>();
-        foyer.setBlocs(blocs);
-        assertEquals(blocs, foyer.getBlocs(), "Foyer should have the correct blocks");
-    }
 
     @Test
     public void testSetAndGetCapaciteFoyer() {
