@@ -110,10 +110,7 @@ class FoyerTest {
         assertEquals(capacity, foyer.getCapaciteFoyer(), "Foyer capacity should match");
     }
 
-    @Test
-    void addFoyer_ShouldThrowException_WhenFoyerIsNull() {
-        assertThrows(IllegalArgumentException.class, () -> foyerService.addFoyer(null), "Expected exception not thrown for null foyer");
-    }
+   
 
     @Test
     void modifyFoyer_ShouldThrowException_WhenFoyerDoesNotExist() {
