@@ -22,7 +22,7 @@ services:
       - MYSQL_ROOT_PASSWORD=26681885  # MySQL root password
       - MYSQL_DATABASE=db  # Create the database on startup
     ports:
-      - "3306:3306"
+      - "3307:3306"
     restart: unless-stopped
     volumes:
       - db:/var/lib/mysql
