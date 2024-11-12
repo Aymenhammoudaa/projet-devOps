@@ -7,8 +7,8 @@ WORKDIR /app
 # Copier le fichier jar de l'application dans l'image
 COPY target/myapp.jar /app/myapp.jar
 
-# Exposer le port sur lequel Spring Boot s'exécute (par défaut 8080)
-EXPOSE 8080
+# Exposer le port 8081 pour Spring Boot (si vous changez le port dans le fichier application.properties)
+EXPOSE 8081
 
 # Commande pour démarrer l'application
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
