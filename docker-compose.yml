@@ -17,7 +17,7 @@ services:
 
   dbmysql:
     image: "mysql:5.6"
-    container_name: dbmysql
+    container_name: dbmysql_new
     environment:
       - MYSQL_ROOT_PASSWORD=26681885  # MySQL root password
       - MYSQL_DATABASE=db  # Create the database on startup
