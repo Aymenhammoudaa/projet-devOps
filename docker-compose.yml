@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   TpFoyer:
-    container_name: TpFoyer
+    container_name: TpFoyer_new
     build:
       context: .  # Ensure the correct relative path to your Dockerfile
     ports:
