@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  springboot-app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "8080:8080"   # Mapper le port 8080 de l'hôte au port 8080 du container
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod  # Exemple d'activation d'un profil Spring (optionnel)
+    volumes:
+      - .:/app  # Lier le code source local au conteneur (si vous développez en local)
+    networks:
+      - springboot-network
+
+networks:
+  springboot-network:
+    driver: bridge
