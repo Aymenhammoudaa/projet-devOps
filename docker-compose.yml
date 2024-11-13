@@ -2,7 +2,7 @@
 version: '3'
 services:
  mysql-db:
-  image: mysql:latest
+  image: mysql:5.7
   container_name: docker-compose-mysql-db
   ports:
    - "3306:3306"
@@ -15,7 +15,7 @@ services:
    - db:/var/lib/mysql  # Specify the mount point within the container
 
  spring-boot-app:
-  image: alaa460/tp-foyer
+  image: alaa460/tp-foyer:5.0.0
   container_name: app-back
   ports:
    - "8085:8085"
