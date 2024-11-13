@@ -5,7 +5,7 @@ stages{
      stage('Récupération du code') {
             steps {
                 git branch: 'karim',
-                url: 'https://github.com/Trabelsiala/tp-foyer.git'
+                url: 'https://github.com/Aymenhammoudaa/projet-devOps.git'
             }
      }
       stage('Maven install') {
