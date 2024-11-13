@@ -1,34 +1,34 @@
-version: '2.29.7'
+version: '3.8'
 
 services:
- mysqldb:
-  image: mysql:5.7
-  restart: unless-stopped
-  environment:
-   - MYSQL_ROOT_PASSWORD=
-   - MYSQL_DATABASE=tpfoyer_db
+ springboot-app:
+  build: .
+  container_name: springboot-app
   ports:
-   - 3306:3306
+   - "8089:8089"   # Mapper le port 8081 de l'hôte au port 8081 du container
+  environment:
+   - SPRING_PROFILES_ACTIVE=prod
+   - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/mydatabase
+   - SPRING_DATASOURCE_USERNAME=root
+   - SPRING_DATASOURCE_PASSWORD=rootpassword
   volumes:
-   - db:/var/lib/mysql
- app-timesheet:
+   - .:/app  # Lier le code source local au conteneur (si vous développez en local)
   depends_on:
-   - mysqldb
+   - mysql-db  # Assurer que MySQL démarre avant Spring Boot
+  networks:
+   - springboot-network
+
+ mysql-db:
   image: alaa460/tp-foyer:5.0.0
-  restart: on-failure
-  ports:
-   - 8082:8082
+  container_name: mysql-db
   environment:
-   SPRING_APPLICATION_JSON: '{
-    "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/tpfoyer_db?createDatabaseIfNotExist=true" ,
-    "spring.datasource.username" : "root",
-    "spring.datasource.password" : null,
-    "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-    "spring.jpa.hibernate.ddl-auto" : "update"
-  }'
+   MYSQL_ROOT_PASSWORD: rootpassword
+   MYSQL_DATABASE: mydatabase
+  ports:
+   - "3306:3306"  # Mapper le port MySQL du container vers l'hôte (facultatif)
+  networks:
+   - springboot-network
 
-  stdin_open: true
-  tty: true
-
-volumes:
- db :
+networks:
+ springboot-network:
+  driver: bridge
