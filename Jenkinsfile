@@ -44,18 +44,18 @@ stage('Nexus') {
 stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t karimby1/foyerspring .'
+                    sh 'docker build -t karimby1/5erpbi7-g7-tpfoyer .'
                 }
             }
         }
-// stage('push docker image to docker hub') {
-//     steps {
-//         withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'docker_username', passwordVariable: 'docker_password')]) {
-//             sh 'echo "$docker_password" | docker login -u "$docker_username" --password-stdin'
-//             sh 'docker push karimby1/foyerspring:latest'
-//         }
-//     }
-// }
+stage('push docker image to docker hub') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'docker_username', passwordVariable: 'docker_password')]) {
+            sh 'echo "$docker_password" | docker login -u "$docker_username" --password-stdin'
+            sh 'docker push karimby1/5erpbi7-g7-tpfoyer:latest'
+        }
+    }
+}
 
     stage('Docker Compose Down') {
             steps {
