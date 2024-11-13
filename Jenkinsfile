@@ -4,7 +4,7 @@ pipeline{
 stages{
      stage('Récupération du code') {
             steps {
-                git branch: 'karim',
+                git branch: 'Karim-benyoussed-5ERP-BI-7-G7',
                 url: 'https://github.com/Aymenhammoudaa/projet-devOps.git'
             }
      }
